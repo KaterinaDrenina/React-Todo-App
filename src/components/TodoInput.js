@@ -1,16 +1,39 @@
-const TodoInput = ({ todo, setTodo, addTodo }) => {
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../actions/todosActions";
+import { v4 as uuidv4 } from "uuid";
+
+
+const TodoInput = () => {
+    const [text, setText] = useState('');
+    const dispatch = useDispatch();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!text.trim()) return;
+
+        const newTodo = {
+            id: uuidv4(),
+            text: text,
+            completed: false
+        }
+
+        dispatch(addTodo(newTodo));
+        setText('');
+    };
+
     return (
-        <div>
+        <form onSubmit={handleSubmit}>
             <input 
             type="text" 
             name="todo" 
-            value={todo} 
+            value={text} 
             placeholder="Create a new todo..." 
-            onChange={(e) => {setTodo(e.target.value)}}
+            onChange={(e) => {setText(e.target.value)}}
             className="input"
             />
-            <button onClick={addTodo} className="button add-button">Add</button>
-      </div>
+            <button type="submit" className="button add-button">Add</button>
+      </form>
     );
 };
 

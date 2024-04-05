@@ -24,6 +24,12 @@ body {
   align-items: flex-start;
 }
 
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .todo.completed {
   text-decoration: line-through;
   opacity: 0.6;
@@ -78,7 +84,7 @@ li {
 .empty {
   font-size: 20px;
   font-weight: 400;
-  color: rgba(255, 255, 111, 0.756);
+  color: rgba(255, 255, 111, 0.591);
   letter-spacing: 2px;
 }
 
